@@ -6,6 +6,9 @@ import editimg from '../assets/icons/create-black-18dp.svg';
 import adduserimg from '../assets/icons/add-24px.svg';
 import img from "../assets/profile-images/Ellipse -3.png";
 function EmployeePayrole() {
+
+    
+
   return (
     <div>
         <body>
@@ -24,7 +27,7 @@ function EmployeePayrole() {
                 Employee Details<div class="emp-count" id ="empcount">1</div>
             </div>
             <a href="http://localhost:3000/" class="add-button">
-            <img src={adduserimg} alt=""/>Add User</a>
+            <img src={adduserimg} alt="" />Add User</a>
         </div>
         <div class="table-main">
             <table id="table-display" class="table">
@@ -46,8 +49,8 @@ function EmployeePayrole() {
                         <td>317300</td>
                         <td>1/2/2023</td>
                         <td>
-                <img id="6" onclick="remove(this)" alt="delete" src={deleteimg}/>
-                <img id="6" onclick="update(this)" alt="edit" src={editimg}/>
+                <img id="6" onClick="remove(this)" alt="delete" src={deleteimg}/>
+                <img id="6" onClick="update(this)" alt="edit" src={editimg}/>
             </td>
                     </tr>
                 </tbody>
