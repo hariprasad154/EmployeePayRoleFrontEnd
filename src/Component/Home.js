@@ -1,6 +1,7 @@
 // import React from 'react';
 import '../css/Home.css';
-import React, { useState } from 'react';
+
+import React, { useState ,useEffect} from 'react';
 import profile1 from '../assets/profile-images/Ellipse -1.png';
 import profile2 from '../assets/profile-images/Ellipse -2.png';
 import profile3 from '../assets/profile-images/Ellipse -3.png';
@@ -72,6 +73,9 @@ function Home(props) {
                 console.log(error);
         });
     };
+    useEffect(() =>{
+        console.log("Usee effect in Home Page ");
+    })
     
     
 
