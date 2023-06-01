@@ -11,6 +11,7 @@ function App() {
       </nav>
       <Routes>
         <Route path='/' element={<Home/>}></Route>
+        <Route path='/:id' element={<Home/>}></Route>
         <Route path='employeelist/' element={<EmployeePayRole/>}></Route>
       </Routes>
     </div>

@@ -9,6 +9,15 @@ class EmployeePayrollServices{
     getAllData(data) {
         return axios.get( `http://localhost:8080/`,data);
     }
+    deleteEmployee(id){
+        return axios.delete(`http://localhost:8080/delete${id}`);
+    }
+    updateEmployee(id, data){
+        return axios.put(`http://localhost:8080/put/${id}`,data);
+    }
+    getEmployeeById(id){
+        return axios.get(`http://localhost:8080/${id}`);
+    }
 }
 
 export default new EmployeePayrollServices();
