@@ -28,14 +28,12 @@ function EmployeePayrole() {
     },[])
 
     let valuesAssign={
-        
         employeeArray:[],
-        
 
     }
     
-    
     const [formValue, setValue] = useState({valuesAssign});
+
     
 
     let getAllEmployees =()=>{
@@ -44,20 +42,13 @@ function EmployeePayrole() {
         EmployeeService.getAllData().then((responce)=>{
             //console.log("---into service");
             //console.log(responce.data)
-            setValue({employeeArray:responce.data.data}) 
-            
-            
-            //setValue({len:valuesAssign.employeeArray.length})
+            setValue({employeeArray:responce.data.data})   
         }
         ).catch((err)=>{
             console.log(err);
         });
         
     }
-
-    const len=valuesAssign.employeeArray.length;
-
-
     let deleteEmp = (id) => { 
         //console.log("-------deleteEmpbefore conform ---------"+id);
         var confirm = window.confirm(" Deleting conformantion ");
@@ -110,10 +101,10 @@ function EmployeePayrole() {
 
     let editEmp = (id) => {
         console.log(id);
+
         // getDateById(id);
         nav(`/${id}`)
-        // nav(`/${id}`);
-        
+        // nav(`/${id}`);  
       };
 
     return (
@@ -131,7 +122,7 @@ function EmployeePayrole() {
         <div class="main-content">
             <div class="header-content">
                 <div class="emp-detail-text">
-                    Employee Details<div class="emp-count" id ="empcount">{len}</div>
+                    Employee Details<div class="emp-count" id ="empcount"></div>
                 </div>
                 <a href="http://localhost:3000/" class="add-button">
                 <img src={adduserimg} alt="" />Add User</a>

@@ -83,12 +83,11 @@ function Home(props) {
             name: formValue.name,
             startDate: `${formValue.day}-${formValue.month}-${formValue.year}`,
             salary: formValue.salary,
-            notes: formValue.notes,
+            note: formValue.notes,
             gender: formValue.gender,
             department: formValue.departmentValue,
-            profile:formValue.profilePic,
+            profilePic:formValue.profile,
         }
-
 
         if(formValue.isUpdate){
             var ans = window.confirm("Confirm the Changes");
@@ -126,13 +125,12 @@ function Home(props) {
         }
     },[params.id]);
 
-    
     const getDateById = (id)=>{
         EmployeeService.getEmployeeById(id)
         .then((response)=>{
             console.log(response.data.data.name);
             let object = response.data.data;
-            // console.log(object);
+            //console.log(object);
             setData(object);
             //setValue({...formValue, [response.target.name]:object});
         })
@@ -140,20 +138,16 @@ function Home(props) {
             console.log("error is " + error);
         });
     }
-
-
-    
-
     const setData = (obj) => {
         let array = obj.startDate;
-        console.log(obj);
+        console.log(obj.profilePic);
 
         setValue({
             ...formValue,
             ...obj,
             id:obj.empId,
             name:obj.name,
-            department: obj.department,
+            departmentValue: obj.department,
             profile:obj.profilePic,
             isUpdate:true,
             day: array[0] + array[1],
@@ -168,6 +162,12 @@ function Home(props) {
         return (
             formValue.departmentValue && formValue.departmentValue.includes(name)
         );
+    };
+
+    const onRest = (event) => {
+        console.log(event.target.name);
+        setValue({...formValue, [event.target.name]:" " });
+        // setValue({})
     };
   return (
 <>
@@ -198,18 +198,22 @@ function Home(props) {
                     <div class="profile-radio-content">
                     <label>
                             <input type="radio" className="profile" name="profile"
-                            value='../assets/profile-images/Ellipse -1.png' checked={formValue.profilePic === "../assets/profile-images/Ellipse -1.png"}  onChange={onChangeFormValue} required />
+                            value='../assets/profile-images/Ellipse -1.png' 
+                            checked={formValue.profile === "../assets/profile-images/Ellipse -1.png"}  onChange={onChangeFormValue} required />
                             <img class="profile-image" className="image"  src={profile1} alt="profile-img not found" />
                         </label>
                         <label>
                             <input type="radio" className="profile" name="profile"
                             value="../assets/profile-images/Ellipse -2.png"
-                            checked={formValue.profilePic === "../assets/profile-images/Ellipse -2.png"} onChange={onChangeFormValue} required />
+                            checked={formValue.profile === "../assets/profile-images/Ellipse -2.png"}
+                            onChange={onChangeFormValue} required />
                             <img class="profile-image" className="image" src={profile2} alt="profile-img not found" />
                         </label>
                         <label>
                             <input type="radio" className="profile" name="profile"
-                            value="../assets/profile-images/Ellipse -3.png" checked={formValue.profilePic === "../assets/profile-images/Ellipse -3.png"}  onChange={onChangeFormValue} required />
+                            value="../assets/profile-images/Ellipse -3.png" 
+                            checked={formValue.profile === "../assets/profile-images/Ellipse -3.png"}
+                             onChange={onChangeFormValue} required />
                             <img class="profile-image" className="image"  src={profile3} alt="profile-img not found" />
                         </label>
                     <label>
@@ -243,9 +247,9 @@ function Home(props) {
                     <label class="text" for="sales">Sales</label>
                     <input class="checkbox" type="checkbox" id="finance" name="department"  onChange={onDepartmentChange} checked={getChecked("Finance")}   value="Finance"/>
                     <label class="text" for="finance">Finance</label>
-                    <input class="checkbox" type="checkbox" id="engineer" name="department" onChange={onDepartmentChange} checked={getChecked("Engineer")}    value="Engineer"/>
+                    <input class="checkbox" type="checkbox" id="engineer" name="department"  onChange={onDepartmentChange} checked={getChecked("Engineer")} value="Engineer"/>
                     <label class="text" for="engineer">Engineer</label>
-                    <input class="checkbox" type="checkbox" id="others" name="department" onChange={onDepartmentChange} checked={getChecked("Others")}    value="Others"/>
+                    <input class="checkbox" type="checkbox" id="others" name="department" onChange={onDepartmentChange}checked={getChecked("Other")}    value="Others"/>
                     <label class="text" for="others">Others</label>
                 </div>
                 </div>
@@ -362,7 +366,7 @@ function Home(props) {
                  <div class="submit-reset"><nav>
                      <Link to='/'> <button type="submit" class="button submitButton" id="submitButton" onClick={onSubmit}>{formValue.isUpdate ? "Update" : "Submit"}</button> </Link>
                      {/* <button type="submit" class="button submitButton" id="submitButton" onClick={onSubmit}>Submit</button> */}
-                     <button type="reset" class="resetButton button">Reset</button>
+                     <button type="reset"  onClick={onRest} class="resetButton button">Reset</button>
                  </nav>
                  </div>
                 </div>
